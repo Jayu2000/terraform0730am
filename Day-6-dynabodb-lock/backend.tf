@@ -2,8 +2,9 @@ terraform {
   backend "s3" {
     bucket = "samjayu-bucket"
     key = "terraform.tfstate"
-    dynamodb_table = "terradynamodb"
     region = "us-east-1"
+    dynamodb_table = "terradynamodb" #dynomodblock-old version
+    #use_lockfile = true // new version
     encrypt = true
     
   }
