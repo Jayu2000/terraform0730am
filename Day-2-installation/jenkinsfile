@@ -1,0 +1,32 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Git Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/Jayu2000/terraform0730am.git'
+      }
+    }
+    stage('init') {
+      steps {
+        dir('Day-2-installation') {
+          sh 'terraform init'
+        }
+      }
+    }
+    stage('plan') {
+      steps {
+        dir('Day-2-installation') {
+         sh 'terraform plan'
+        }
+      }
+    }
+    stage('Apply') {
+      steps {
+        dir('Day-2-installation') {
+          sh 'terraform ${action} -auto-approve'
+        }
+      }
+    }
+  }
+}
